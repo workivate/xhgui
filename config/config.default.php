@@ -16,8 +16,8 @@ return array(
     // Needed for file save handler. Beware of file locking. You can adujst this file path 
     // to reduce locking problems (eg uniqid, time ...)
     //'save.handler.filename' => __DIR__.'/../data/xhgui_'.date('Ymd').'.dat',
-    'db.host' => 'mongodb://127.0.0.1:27017',
-    'db.db' => 'xhprof',
+    'db.host' => getenv('XHPROF_DB_CONNECTION_STRING'),
+    'db.db' => getenv('XHPROF_DB_NAME'),
 
     // Allows you to pass additional options like replicaSet to MongoClient.
     // 'username', 'password' and 'db' (where the user is added)
@@ -30,7 +30,7 @@ return array(
     // Profile 1 in 100 requests.
     // You can return true to profile every request.
     'profiler.enable' => function() {
-        return rand(0, 100) === 42;
+        return rand(0, getenv('XHGUI_SAMPLE')) === 0;
     },
 
     'profiler.simple_url' => function($url) {
