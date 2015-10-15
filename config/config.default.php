@@ -30,6 +30,9 @@ return array(
     // Profile 1 in 100 requests.
     // You can return true to profile every request.
     'profiler.enable' => function() {
+        if (empty($_SERVER['REQUEST_URI'])) {
+            return false;
+        }
         return rand(0, getenv('XHGUI_SAMPLE')) === 0;
     },
 
