@@ -18,10 +18,11 @@ return array(
     //'save.handler.filename' => __DIR__.'/../data/xhgui_'.date('Ymd').'.dat',
     'db.host' => 'mongodb://' + getenv('XHPROF_DB_CONNECTION_STRING'),
     'db.db' => getenv('XHPROF_DB_NAME'),
-
     // Allows you to pass additional options like replicaSet to MongoClient.
     // 'username', 'password' and 'db' (where the user is added)
-    'db.options' => array(),
+    'db.options' => [
+        'replicaSet' => getenv('DB_WAM_REPLICA_NAME'),
+    ],
     'templates.path' => dirname(__DIR__) . '/src/templates',
     'date.format' => 'M jS H:i:s',
     'detail.count' => 6,
